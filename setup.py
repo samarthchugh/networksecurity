@@ -27,3 +27,13 @@ def get_requirements() -> List[str]:
     return requirement_lst
 
 print(get_requirements())
+
+setup(
+    name='networksecurity',
+    version='0.0.1',
+    author='Samarth',
+    author_email='samarthchugh049@gmail.com',
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=get_requirements()
+)
