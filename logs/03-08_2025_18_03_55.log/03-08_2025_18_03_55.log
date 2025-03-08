@@ -1,0 +1,1 @@
+[ 2025-03-08 18:03:58,141 ] 54 root - ERROR - Error occured in insert_data_mongodb method Unknown option: ca_file. Did you mean one of (tlscafile, tlscrlfile, tlscertificatekeyfile) or maybe a camelCase version of one? Refer to docstring.
