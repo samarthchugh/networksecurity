@@ -5,6 +5,8 @@ scikit-learn
 pymongo
 certifi
 flask
-pymongo[srv]==3.6
+pymongo[srv]
+dill
+pyaml
 
 # -e .
