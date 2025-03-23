@@ -5,6 +5,8 @@ import os,sys
 import numpy as np
 import dill
 import pickle
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import r2_score
 
 def read_yaml_file(file_path:str) -> dict:
     try:
@@ -51,3 +53,51 @@ def save_object(file_path:str,obj:object)->None:
         logging.info("Exited the save_object method of MainUtils class")
     except Exception as e:
         raise NetworkSecurityException(e,sys) from e
+    
+def load_object(file_path:str):
+    try:
+        if not os.path.exists(file_path):
+            raise Exception(f"The file: {file_path} is not exists.")
+        with open(file_path,'rb') as file_obj:
+            print(file_obj)
+            return pickle.load(file_obj)
+    except Exception as e:
+        raise NetworkSecurityException(e,sys) from e
+    
+def load_numpy_array_data(file_path:str)->np.array:
+    
+    """
+        load numpy array data from file 
+        file_path : str location of file to load
+        return : np.array data loaded.
+    """
+    try:
+        with open(file_path,'rb') as file_obj:
+            return np.load(file_obj)
+    except Exception as e:
+        raise NetworkSecurityException(e,sys) from e
+    
+def evaluate_model(X_train,y_train,X_test,y_test,model,param):
+    try:
+        report={}
+        
+        for i in range(len(list(model))):
+            models=list(model.values())[i]
+            para=param[list(model.keys())[i]]
+            
+            gs=GridSearchCV(models,para,cv=3)
+            gs.fit(X_train,y_train)
+            
+            models.set_params(**gs.best_params_)
+            models.fit(X_train,y_train)
+            
+            y_train_pred=models.predict(X_train)
+            y_test_pred=models.predict(X_test)
+            
+            train_model_score=r2_score(y_train,y_train_pred)
+            test_model_score=r2_score(y_test,y_test_pred)
+            
+            report[list(model.keys())[i]]=test_model_score
+        return report
+    except Exception as e:
+        raise NetworkSecurityException(e,sys)
