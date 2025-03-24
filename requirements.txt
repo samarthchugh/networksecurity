@@ -8,5 +8,6 @@ flask
 pymongo[srv]
 dill
 pyaml
+mlflow
 
 # -e .

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/NetworkSecurity/mlruns/0/a468ec49198248e885d1ecf284ba881f/artifacts
+end_time: 1742829088494
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a468ec49198248e885d1ecf284ba881f
+run_name: clumsy-grub-696
+run_uuid: a468ec49198248e885d1ecf284ba881f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742829084195
+status: 3
+tags: []
+user_id: samarth
